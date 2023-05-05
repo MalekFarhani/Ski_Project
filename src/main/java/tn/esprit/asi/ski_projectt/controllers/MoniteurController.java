@@ -25,7 +25,11 @@ public class MoniteurController {
         return moniteurService.getAll();
     }
 
-
+    @PutMapping()
+    public Moniteur updateMoniteur(@RequestBody Moniteur moniteur){
+        moniteurService.update(moniteur);
+        return moniteur;
+    }
 
 
     @GetMapping("/{id}")
