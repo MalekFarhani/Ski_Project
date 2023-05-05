@@ -31,10 +31,7 @@ public class MoniteurController {
         return moniteur;
     }
 
-    @GetMapping("/{id}")
-    public Moniteur getMoniteur(@PathVariable("id")Long id) {
-        return moniteurService.getById(id);
-    }
+
 
     @DeleteMapping
     public void deleteMoniteur(@RequestBody Moniteur moniteur) {
