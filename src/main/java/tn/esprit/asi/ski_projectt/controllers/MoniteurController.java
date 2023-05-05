@@ -20,10 +20,7 @@ public class MoniteurController {
         return moniteur;
     }
 
-    @GetMapping()
-    public List<Moniteur> getAllMoniteur(){
-        return moniteurService.getAll();
-    }
+
 
     @PutMapping()
     public Moniteur updateMoniteur(@RequestBody Moniteur moniteur){
