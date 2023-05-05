@@ -36,5 +36,8 @@ public class MoniteurController {
     public Moniteur getMoniteur(@PathVariable("id")Long id) {
         return moniteurService.getById(id);
     }
-
+    @DeleteMapping
+    public void deleteMoniteur(@RequestBody Moniteur moniteur) {
+        moniteurService.remove(moniteur.getNumMoniteur());
+    }
 }
