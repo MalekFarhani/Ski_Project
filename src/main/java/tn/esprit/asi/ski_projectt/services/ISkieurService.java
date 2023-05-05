@@ -16,7 +16,6 @@ public interface ISkieurService {
     Skieur assignSkieurToAbon(Long numSkieur, Long numAbon);
 
     Skieur addSkierAndAssignToCourse(Skieur skieur);
-
     List<Skieur> retrieveSkiersBySubscriptionType(TypeAbonnement typeAbonnement);
 
 }

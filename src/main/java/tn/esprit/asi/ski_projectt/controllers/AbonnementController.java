@@ -1,6 +1,8 @@
 package tn.esprit.asi.ski_projectt.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.asi.ski_projectt.entities.Abonnement;
@@ -13,12 +15,13 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/abon")
+@RequiredArgsConstructor
 public class AbonnementController {
-    @Autowired
-    private IAbonnementService abonnementService;
+
+    private final IAbonnementService abonnementService;
 
     @PostMapping()
-    public Abonnement addAbon(@RequestBody Abonnement abonnement) //requestBody : tell the program to look at the body of the http request for a skieur object (in the JSON data)
+    public Abonnement addAbon(@RequestBody Abonnement abonnement)
     {
         abonnementService.add(abonnement);
         return abonnement;
@@ -51,8 +54,6 @@ public class AbonnementController {
         return abonnementService.getSubscriptionByType(typeAbonnement);
     }
 
-
-    //DateTimeFormat to fix a certain pattern
     @GetMapping("/{startDate}/{endDate}")
     public Set<Abonnement> getAbonBetweenDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate)
     {

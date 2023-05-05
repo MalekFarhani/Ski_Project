@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
-@Entity(name="skieurs")
+@Entity
 
 public class Skieur {
     @Id

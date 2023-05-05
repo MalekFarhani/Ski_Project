@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity(name="cours")
+@Entity
 
 public class Cours {
     @Id

@@ -3,7 +3,9 @@ package tn.esprit.asi.ski_projectt.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import tn.esprit.asi.ski_projectt.entities.Abonnement;
+import tn.esprit.asi.ski_projectt.entities.Inscription;
 import tn.esprit.asi.ski_projectt.entities.Skieur;
 import tn.esprit.asi.ski_projectt.entities.TypeAbonnement;
 import tn.esprit.asi.ski_projectt.repositories.AbonnementRepository;
@@ -29,6 +31,7 @@ public class ISkieurServiceImp implements ISkieurService {
     private AbonnementRepository abonnementRepository;
     @Autowired
     private InscriptionRepository inscriptionRepository;
+
     @Override
     @Transactional
     public void add(Skieur s) {
@@ -69,8 +72,8 @@ public class ISkieurServiceImp implements ISkieurService {
     @Override
     @Transactional
     public Skieur assignSkieurToPiste(Long numSkieur, Long numPiste) {
-        if(skieurRepository.existsById(numSkieur) && pisteRepository.existsById(numPiste)){
-            Skieur s= skieurRepository.findById(numSkieur).get();
+        if (skieurRepository.existsById(numSkieur) && pisteRepository.existsById(numPiste)) {
+            Skieur s = skieurRepository.findById(numSkieur).get();
             s.addPiste(pisteRepository.findById(numPiste).get());
             return s;
         }
@@ -79,8 +82,7 @@ public class ISkieurServiceImp implements ISkieurService {
 
     @Override
     public Skieur assignSkieurToAbon(Long numSkieur, Long numAbon) {
-        if(skieurRepository.existsById(numSkieur) && abonnementRepository.existsById(numAbon))
-        {
+        if (skieurRepository.existsById(numSkieur) && abonnementRepository.existsById(numAbon)) {
             Skieur s = skieurRepository.findById(numSkieur).get();
             s.setAbonnement(abonnementRepository.findById(numAbon).get());
             return skieurRepository.save(s);
@@ -90,18 +92,22 @@ public class ISkieurServiceImp implements ISkieurService {
 
     @Override
     public Skieur addSkierAndAssignToCourse(Skieur skieur) {
-        //Créer Abonnement
-        Abonnement a = skieur.getAbonnement();
-        if(a != null && skieur.getInscriptions() != null){
-            abonnementRepository.save(a);
-            inscriptionRepository.saveAll(skieur.getInscriptions());
-            return skieurRepository.save(skieur);}
+        Assert.notNull(skieur.getAbonnement(), "must not be null");
+        Assert.notNull(skieur.getInscriptions(), "must not be null");
+        skieur.getInscriptions().forEach(inscription -> {
+          Assert.notNull(inscription.getCours);
+        }
         return null;
     }
 
     @Override
     public List<Skieur> retrieveSkiersBySubscriptionType(TypeAbonnement typeAbonnement) {
-        //return getAll().stream().filter(skieur -> skieur.getAbonnement().getTypeAbon()== typeAbonnement).collect(Collectors.toList());
-        return skieurRepository.findByAbonnementTypeAbon(typeAbonnement);
+        return null;
     }
+
+    /*@Override
+    public List<Skieur> retrieveSkiersBySubscriptionType(TypeAbonnement typeAbonnement) {
+
+        return skieurRepository.findByAbonnementTypeAbon(typeAbonnement);
+    }*/
 }

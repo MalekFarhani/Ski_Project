@@ -53,5 +53,9 @@ public class SkieurController {
     public Skieur assignSkieurToAbon(@PathVariable Long numSkieur, @PathVariable Long numAbon){
         return skieurService.assignSkieurToAbon(numSkieur,numAbon);
     }
+    @PostMapping("/addcourse")
+    public Skieur addSkierAndAssignToCourse(Skieur skieur){
+
+    }
 
 }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
-@Entity(name="moniteurs")
+@Entity
 
 public class Moniteur {
     @Id

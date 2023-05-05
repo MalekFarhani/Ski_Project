@@ -1,6 +1,7 @@
 package tn.esprit.asi.ski_projectt.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tn.esprit.asi.ski_projectt.entities.Abonnement;
 import tn.esprit.asi.ski_projectt.entities.TypeAbonnement;
 import tn.esprit.asi.ski_projectt.repositories.AbonnementRepository;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class IAbonnementserviceImp implements IAbonnementService {
     @Autowired
     AbonnementRepository abonnementRepository;

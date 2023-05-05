@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-@Service
+
 public interface IAbonnementService {
     void add(Abonnement a);
     Abonnement update(Abonnement a);

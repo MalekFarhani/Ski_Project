@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name="inscriptions")
+@Entity
 
 public class Inscription {
     @Id
